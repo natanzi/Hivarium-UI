@@ -1,0 +1,74 @@
+{
+  "primitive": {
+    "slate": {
+      "50": {
+        "$type": "color",
+        "$value": "#f8fafc"
+      },
+      "100": {
+        "$type": "color",
+        "$value": "#f1f5f9"
+      },
+      "200": {
+        "$type": "color",
+        "$value": "#e2e8f0"
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#0f172a"
+      }
+    },
+    "emerald": {
+      "500": {
+        "$type": "color",
+        "$value": "#10b981"
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#059669"
+      }
+    }
+  },
+  "semantic": {
+    "surface": {
+      "base": {
+        "$type": "color",
+        "$value": "{primitive.slate.50}"
+      },
+      "card": {
+        "$type": "color",
+        "$value": "#ffffff"
+      },
+      "card-back": {
+        "$type": "color",
+        "$value": "{primitive.slate.50}"
+      }
+    },
+    "text": {
+      "primary": {
+        "$type": "color",
+        "$value": "{primitive.slate.900}"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "#64748b"
+      }
+    },
+    "border": {
+      "default": {
+        "$type": "color",
+        "$value": "{primitive.slate.200}"
+      }
+    },
+    "action": {
+      "primary": {
+        "$type": "color",
+        "$value": "{primitive.emerald.500}"
+      },
+      "primary-hover": {
+        "$type": "color",
+        "$value": "{primitive.emerald.600}"
+      }
+    }
+  }
+}

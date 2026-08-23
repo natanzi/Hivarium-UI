@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #10b981;
+  --color-brand-secondary: #059669;
+  --color-surface-base: #f8fafc;
+  --color-surface-card: #ffffff;
+  --color-text-main: #0f172a;
+  --color-text-muted: #64748b;
+  --color-border-main: #e2e8f0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-surface-base);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+  /* Hide scrollbars for the 3D app */
+}
+
+/* Agent Card Styles with Curved Paper Effect */
+.agent-card-container {
+  width: 320px;
+  height: 280px;
+  perspective: 1500px;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  /* Surface lighting gradient that makes the sheet look curved / cylindrical */
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 10%, #ffffff 90%, #f8fafc 100%);
+  border: 1px solid rgba(226, 232, 240, 0.7);
+  box-sizing: border-box;
+}
+
+/* Paper Curl Shadows under the cards to simulate curvilinear bending */
+.agent-card-container::before,
+.agent-card-container::after {
+  content: "";
+  position: absolute;
+  bottom: 12px;
+  width: 46%;
+  height: 12px;
+  z-index: -1;
+  box-shadow: 0 16px 20px rgba(15, 23, 42, 0.16);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.agent-card-container::before {
+  left: 12px;
+  transform: rotate(-3.5deg);
+}
+
+.agent-card-container::after {
+  right: 12px;
+  transform: rotate(3.5deg);
+}
+
+/* Lift shadows on hover */
+.agent-card-container:hover::before {
+  box-shadow: 0 22px 26px rgba(15, 23, 42, 0.24);
+  transform: rotate(-5deg) translateY(2px);
+}
+
+.agent-card-container:hover::after {
+  box-shadow: 0 22px 26px rgba(15, 23, 42, 0.24);
+  transform: rotate(5deg) translateY(2px);
+}
+
+.flip-card-front {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 10%, #ffffff 90%, #f8fafc 100%);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* In-Card Sliding Sub-Views */
+.back-view {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+  box-sizing: border-box;
+}
+
+.view-main {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.view-main.out {
+  transform: translateX(-110%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.view-settings {
+  transform: translateX(110%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.view-settings.in {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
